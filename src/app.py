@@ -388,7 +388,7 @@ def display_results(result):
     st.header("Trading Decisions")
     
     # Display trading decisions
-    st.subheader("Trading Decisions")
+    # st.subheader("Trading Decisions")
     
     decisions_data = []
     for ticker, decision in decisions.items():
