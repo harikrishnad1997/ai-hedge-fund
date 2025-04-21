@@ -170,6 +170,7 @@ def run_hedge_fund(
 # Streamlit app components
 def display_header():
     st.title("Hari's AI Hedge Fund Trading System")
+    # st.image("src/assets/about.jpg", use_container_width=True)
     st.markdown("""
     This application uses AI agents to analyze stocks and make trading decisions.
     Select your preferences and run the simulation to see what the AI recommends.
@@ -187,6 +188,29 @@ def display_header():
 
 def display_sidebar_settings():
     # st.sidebar.image("[![Logo](assets/Hari.jpeg)](https://www.linkedin.com/in/hdev1997/)", unsafe_allow_html=True)
+    st.sidebar.title("Harikrishna Dev")
+    st.sidebar.image("src/assets/Hari.jpeg", use_container_width=True)
+    # st.sidebar.markdown("""<a href="https://www.linkedin.com/in/hdev1997/">Connect with me on LinkedIn</a>""", unsafe_allow_html=True)
+    st.sidebar.markdown("""
+<div style="display: flex; gap: 10px;">
+    <a href="https://www.linkedin.com/in/hdev1997/" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" width="30">
+    </a>
+    <a href="https://github.com/hdev1997" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="30">
+    </a>
+    <a href="mailto:harikrish0607@gmail.com" target="_blank">
+        <img src="https://img.icons8.com/ios-glyphs/30/000000/new-post.png" alt="Email" width="30">
+    </a>
+    <a href="https://topmate.io/harikrishnad" target="_blank" rel="noopener noreferrer">
+        <img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Topmate" width="30">
+    </a>
+    <a href="https://medium.com/@harikrishnad1997" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968885.png" alt="Medium" width="30">
+    </a>
+</div>
+""", unsafe_allow_html=True)
+
     st.sidebar.header("Configuration")
 
     password = st.sidebar.text_input("Password", type="password")
