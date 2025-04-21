@@ -35,7 +35,7 @@ init(autoreset=True)
 
 # Set page configuration
 st.set_page_config(
-    page_title="AI Hedge Fund Trading System",
+    page_title="Hari's AI Hedge Fund Trading System",
     page_icon="💰",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -144,7 +144,7 @@ def run_hedge_fund(
 
 # Streamlit app components
 def display_header():
-    st.title("AI Hedge Fund Trading System")
+    st.title("Hari's AI Hedge Fund Trading System")
     st.markdown("""
     This application uses AI agents to analyze stocks and make trading decisions.
     Select your preferences and run the simulation to see what the AI recommends.
@@ -161,6 +161,7 @@ def display_header():
 
 
 def display_sidebar_settings():
+    # st.sidebar.image("[![Logo](assets/Hari.jpeg)](https://www.linkedin.com/in/hdev1997/)", unsafe_allow_html=True)
     st.sidebar.header("Configuration")
     
     # Portfolio settings
@@ -185,11 +186,11 @@ def display_sidebar_settings():
     # Date settings
     st.sidebar.subheader("Date Range")
     end_date = st.sidebar.date_input("End Date", datetime.now())
-    start_date = st.sidebar.date_input("Start Date", (end_date - relativedelta(months=3)))
+    start_date = st.sidebar.date_input("Start Date", (end_date - relativedelta(months=12)))
     
     # Additional settings
     st.sidebar.subheader("Additional Settings")
-    show_reasoning = st.sidebar.checkbox("Show Agent Reasoning", value=False)
+    show_reasoning = st.sidebar.checkbox("Show Agent Reasoning", value=True)
     show_agent_graph = st.sidebar.checkbox("Show Agent Graph", value=False)
     
     return {
