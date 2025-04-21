@@ -28,6 +28,7 @@ langchain-google-genai = "^2.0.11"
 streamlit = "^1.33.0"
 ipython = "^8.24.0" 
 yfinance = "^0.2.50"
+opik = "^1.7.9"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.0"

@@ -11,6 +11,7 @@ from langchain_core.runnables.graph import MermaidDrawMethod
 from IPython.display import Image
 import tempfile
 import yfinance as yf
+import os
 # Import local modules
 from agents.ben_graham import ben_graham_agent
 from agents.bill_ackman import bill_ackman_agent
@@ -28,10 +29,30 @@ from utils.progress import progress
 from utils.visualize import save_graph_as_png
 from llm.models import LLM_ORDER, get_model_info
 from langgraph.graph import END, StateGraph
+import opik
+from opik.integrations.langchain import OpikTracer
 
 # Load environment variables
 load_dotenv()
 init(autoreset=True)
+
+try:
+    opik_url = os.environ["OPIK_URL_OVERRIDE"]
+except:
+    opik_url = "https://www.comet.com/opik/api/"
+    os.environ["OPIK_URL_OVERRIDE"] = opik_url
+
+try:
+    opik_workspace = os.environ["OPIK_WORKSPACE"]
+except:
+    opik_workspace = "harikrishnad1997"
+    os.environ["OPIK_WORKSPACE"] = opik_workspace
+
+try:
+    opik_project_name = os.environ["OPIK_PROJECT_NAME"]
+except:
+    opik_project_name = "AI_hedge_fund_tesing"
+    os.environ["OPIK_PROJECT_NAME"] = opik_project_name
 
 # Set page configuration
 st.set_page_config(
@@ -109,8 +130,11 @@ def run_hedge_fund(
         if selected_analysts:
             workflow = create_workflow(selected_analysts)
             agent = workflow.compile()
+
+            tracer = OpikTracer(graph=agent.get_graph(xray=True))
         else:
             agent = create_workflow(selected_analysts=["charlie_munger"]).compile()
+            tracer = OpikTracer(graph=agent.get_graph(xray=True))
 
         final_state = agent.invoke(
             {
@@ -132,6 +156,7 @@ def run_hedge_fund(
                     "model_provider": model_provider,
                 },
             },
+            config={'callbacks':[tracer]}
         )
 
         return {
@@ -163,7 +188,11 @@ def display_header():
 def display_sidebar_settings():
     # st.sidebar.image("[![Logo](assets/Hari.jpeg)](https://www.linkedin.com/in/hdev1997/)", unsafe_allow_html=True)
     st.sidebar.header("Configuration")
-    
+
+    password = st.sidebar.text_input("Password", type="password")
+    if password != os.getenv("PASSWORD"):
+        st.error("Enter the right password: HARIHATESAI all L0w3RCA5E")
+        st.stop()
     # Portfolio settings
     st.sidebar.subheader("Portfolio Settings")
     initial_cash = st.sidebar.number_input("Initial Cash ($)", value=100000.0, step=10000.0)
@@ -235,6 +264,7 @@ def select_llm_model():
         options=list(model_options.keys()),
         format_func=lambda x: model_options[x],
         index = 7,
+        # default = "gemini-2.0-flash",
     )
     
     model_info = get_model_info(model_choice)
