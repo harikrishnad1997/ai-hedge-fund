@@ -196,7 +196,7 @@ def display_sidebar_settings():
     <a href="https://www.linkedin.com/in/hdev1997/" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" width="30">
     </a>
-    <a href="https://github.com/hdev1997" target="_blank">
+    <a href="https://github.com/harikrishnad1997" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="30">
     </a>
     <a href="mailto:harikrish0607@gmail.com" target="_blank">
